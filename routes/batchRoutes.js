@@ -8,13 +8,13 @@ const router = express.Router();
 router.use(authController.protect);
 
 router.post('/update-user-batch', batchController.createUserBatch);
+router.post('/', batchController.createBatch);
 
 router.use(authController.restrictTo('admin'));
 
 router
   .route('/')
   .get(batchController.getAllBatches)
-  .post(batchController.createBatch);
 
 router.route('/:id')
   .get(batchController.getBatch)
