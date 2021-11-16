@@ -52,7 +52,17 @@ if (signupForm) {
     const role = 'user';
     const photo = 'default.jpg';
 
-    signup(name, email, passwordSignup, passwordConfirmSignup, role, photo);
+    var ele = document.getElementsByName('signup-timing');
+    var batch_id = 1;
+              
+    for(let i = 0; i < ele.length; i++) {
+        if(ele[i].checked){
+          batch_id = ele[i].value;
+          break;
+        }
+    }
+
+    signup(name, email, passwordSignup, passwordConfirmSignup, role, photo, batch_id);
   });
 }
 

@@ -17,8 +17,19 @@ block content
                 .form__group.ma-bt-md
                     label.form__label(for='passwordConfirm') Confirm Your Password
                     input#passwordConfirmSignup.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group
+                    h2.form_label Select Class Timings:
+                    label.form__label(for='batch-1') 6:00AM - 7:00 AM
+                    input#batch-1.form__input(type='radio', value='1', required, name='signup-timing')
+                    label.form__label(for='batch-2') 7:00AM - 8:00 AM
+                    input#batch-2.form__input(type='radio', value='2', required, name='signup-timing')
+                    label.form__label(for='batch-3') 8:00AM - 9:00 AM
+                    input#batch-3.form__input(type='radio', value='3', required, name='signup-timing')
+                    label.form__label(for='batch-4') 5:00PM - 6:00 PM
+                    input#batch-4.form__input(type='radio', value='4', required, name='signup-timing')
                 .form__group.ma-bt-md 
                     label.form__label(for='age') By Check this, you confirm that your age is between 18 - 65.
                     input(type='checkbox' name='agreement' required)#age
+
                 .form__group
                     button.btn.btn--green Sign Up
