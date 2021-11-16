@@ -1,0 +1,48 @@
+extends base
+include _reviewCard
+
+
+mixin navItem(link, icon, text, active)
+  li(class=`${active? 'side-nav--active': ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      | #{text}
+
+block content
+    main.main
+      .user-view
+        nav.user-view__menu
+            ul.side-nav
+                +navItem('/me','settings','Account Settings')
+                +navItem('/my-batch','briefcase','Batch Settings', true)
+                +navItem('/pay','credit-card','Billing')
+            -if (user.role === 'admin')
+                .admin-nav
+                  h5.admin-nav__heading Admin
+                  ul.side-nav
+                    +navItem('#','map','Manage tours')
+                    +navItem('#','users','Manage users')
+                    +navItem('#','briefcase','Manage bookings')
+
+        .user-view__content
+                .user-view__form-container
+                  h2.heading-secondary.ma-bt-md Batch settings
+
+                  h3.heading-tertiary Note: Changes in the Batch Timings will take effect from next month Onwards
+
+                  //- With API
+                  form#updateBatchForm.form
+                    .form__group
+                      label.form__label(for='batch-1') 6:00AM - 7:00 AM
+                      input#batch-1.form__input(type='radio', value='1', required, name='timing')
+                      label.form__label(for='batch-2') 7:00AM - 8:00 AM
+                      input#batch-2.form__input(type='radio', value='2', required, name='timing')
+                      label.form__label(for='batch-3') 8:00AM - 9:00 AM
+                      input#batch-3.form__input(type='radio', value='3', required, name='timing')
+                      label.form__label(for='batch-4') 5:00PM - 6:00 PM
+                      input#batch-4.form__input(type='radio', value='4', required, name='timing')
+                    .form__group.right
+                      button.btn.btn--small.btn--green Update Batch
+
+                .line &nbsp;

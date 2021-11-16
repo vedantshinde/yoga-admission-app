@@ -1,0 +1,35 @@
+extends base
+include _reviewCard
+
+mixin navItem(link, icon, text, active)
+  li(class=`${active? 'side-nav--active': ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      | #{text}
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('/me','settings','Account Settings')
+                    +navItem('/my-batch','briefcase','Batch Settings')
+                    +navItem('/pay','credit-card','Billing', true)
+                -if (user.role === 'admin')
+                    .admin-nav
+                     h5.admin-nav__heading Admin
+                     ul.side-nav
+                        +navItem('#','map','Manage tours')
+                        +navItem('#','users','Manage users')
+                        +navItem('#','briefcase','Manage bookings')
+
+            .user-view__content
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md Pay For This Month
+
+                .user-view__form-container
+                    if user
+                        button.btn.btn--green.span-all-rows#book-class Pay
+                    else
+                        a.btn.btn--green.span-all-rows(href='/login') Log In to Pay
